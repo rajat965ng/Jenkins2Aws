@@ -13,5 +13,16 @@ pipeline {
                 sh 'mvn install -DskipTests'
             }
         }
+        stage('Publish') {
+            steps {
+                sh 'docker build -t rajat965ng/crickplay .'
+            }
+            steps {
+                sh 'docker push rajat965ng/crickplay '
+            }
+            steps {
+                sh 'docker rmi rajat965ng/crickplay '
+            }
+        }
     }
 }
