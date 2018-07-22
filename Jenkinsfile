@@ -14,8 +14,11 @@ pipeline {
             }
         }
         stage('Publish') {
+            agent {
+                dockerfile true
+            }
             steps {
-                sh 'docker build -t crickplay:v1 .'
+                echo 'Docker build complete'
             }
         }
     }
