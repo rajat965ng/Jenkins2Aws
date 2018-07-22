@@ -14,10 +14,9 @@ pipeline {
             }
         }
         stage('Publish') {
-            agent any
-            steps {
+
                app = docker.build("rajat965ng/crickplay")
-            }
+        
         }
     }
 }
