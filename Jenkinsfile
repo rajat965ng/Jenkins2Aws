@@ -13,10 +13,8 @@ pipeline {
                 sh 'mvn install -DskipTests'
             }
         }
-    }
-    agent any
-    stages {
         stage('Package') {
+            agent any
             steps {
                 sh 'docker build -t crickplay:v1 .'
             }
