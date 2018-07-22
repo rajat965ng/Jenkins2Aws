@@ -16,10 +16,7 @@ pipeline {
         stage('Publish') {
             agent any
             steps {
-                sh 'yum install libtool-libs -y'
-                sh 'docker build -t rajat965ng/crickplay .'
-                sh 'docker push rajat965ng/crickplay '
-                sh 'docker rmi rajat965ng/crickplay '
+               app = docker.build("rajat965ng/crickplay")
             }
         }
     }
