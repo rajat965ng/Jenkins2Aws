@@ -14,9 +14,9 @@ pipeline {
             }
         }
         stage('Publish') {
-
-               app = docker.build("rajat965ng/crickplay")
-        
+            steps {
+                sh 'docker build -t crickplay:v1 .'
+            }
         }
     }
 }
