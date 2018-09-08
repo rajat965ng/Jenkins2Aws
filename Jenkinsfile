@@ -18,7 +18,7 @@ pipeline {
 
         stage ('Publish') {
             steps {
-                sh 'docker build -t helloboot:v1" .'
+                sh 'docker build -t helloboot:v1 .'
             }
         }
 
