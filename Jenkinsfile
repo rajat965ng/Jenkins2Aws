@@ -18,7 +18,7 @@ pipeline {
 
         stage ('Publish') {
             steps {
-                sh 'docker build -t helloboot:"${echo | git rev-parse --short HEAD}" .'
+                sh 'docker build -t helloboot:v1" .'
             }
         }
 
