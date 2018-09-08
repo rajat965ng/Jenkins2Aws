@@ -12,13 +12,13 @@ pipeline {
 
         stage ('Build') {
             steps {
-                echo 'Hello World'
+                sh "mvn clean install"
             }
         }
 
         stage ('Publish') {
             steps {
-                echo 'Publish'
+                sh 'docker build -t helloboot:${git rev-parse --short} .'
             }
         }
 
