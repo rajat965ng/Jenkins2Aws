@@ -15,5 +15,19 @@ pipeline {
                 echo 'Hello World'
             }
         }
+
+        stage ('Publish') {
+            steps {
+                echo 'Publish'
+            }
+        }
+
+        stage ('Deploy') {
+            steps {
+                echo 'Deploy'
+            }
+        }
+
+
     }
 }
