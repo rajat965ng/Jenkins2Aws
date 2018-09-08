@@ -18,9 +18,7 @@ pipeline {
 
         stage ('Publish') {
             steps {
-                sh 'docker build -t helloboot:v1 .'
-                sh 'docker login -u rajat965ng -p deepa@16'
-                sh 'docker tag helloboot:v1 rajat965ng/helloboot:v1'
+                sh 'docker build -t rajat965ng/helloboot:v1 .'
                 sh 'docker push rajat965ng/helloboot:v1'
             }
         }
