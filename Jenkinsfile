@@ -20,7 +20,8 @@ pipeline {
             steps {
                 sh 'docker build -t helloboot:v1 .'
                 sh 'docker login -u rajat965ng -p deepa@16'
-                sh 'docker push helloboot:v1'
+                sh 'docker tag helloboot:v1 rajat965ng/helloboot:v1'
+                sh 'docker push rajat965ng/helloboot:v1'
             }
         }
 
