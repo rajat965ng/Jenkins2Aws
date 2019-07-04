@@ -14,9 +14,8 @@ pipeline {
             }
         }
         stage('Package') {
-            agent any
             steps {
-                docker.build "rajat965ng/crickplay:$BUILD_NUMBER"
+                sh 'docker build -t crickplay:v1 .'
             }
         }
     }
