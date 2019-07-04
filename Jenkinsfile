@@ -1,16 +1,16 @@
 pipeline {
     agent {
-        docker { image 'maven:latest' }
+        docker { image 'maven:latest', args: '-v $PWD/app:/app' }
     }
     stages {
         stage('Test') {
             steps {
-                sh 'docker run -v $PWD/app:/app maven mvn clean test'
+                sh 'mvn clean test'
             }
         }
         stage('Build') {
             steps {
-                sh 'docker run -v $PWD/app:/app maven mvn install -DskipTests'
+                sh 'mvn install -DskipTests'
             }
         }
         stage('Package') {
