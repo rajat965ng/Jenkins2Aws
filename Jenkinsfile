@@ -5,12 +5,12 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'mvn clean test'
+                sh 'docker run -v $PWD/app:/app maven mvn clean test'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn install -DskipTests'
+                sh 'docker run -v $PWD/app:/app maven mvn install -DskipTests'
             }
         }
         stage('Package') {
