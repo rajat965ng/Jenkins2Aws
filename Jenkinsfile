@@ -14,8 +14,10 @@ pipeline {
             }
         }
         stage('Package') {
-            steps {
-                sh 'docker build -t crickplay:v1 .'
+            app = docker.build("rajat965ng/crickplay")
+            docker.withRegistry('https://registry.hub.docker.com', 'rajat965ng') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
             }
         }
     }
