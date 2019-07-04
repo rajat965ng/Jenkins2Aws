@@ -3,6 +3,10 @@ pipeline {
         docker { image 'maven:latest' }
     }
     stages {
+        stage('Initialize'){
+         def dockerHome = tool 'mydocker'
+         env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage('Test') {
             steps {
                 sh 'mvn clean test'
