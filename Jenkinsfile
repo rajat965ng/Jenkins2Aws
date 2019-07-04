@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'maven:latest', args: '-v $PWD/app:/app' }
+        docker { image 'maven:latest' args '-v $PWD/app:/app' }
     }
     stages {
         stage('Test') {
