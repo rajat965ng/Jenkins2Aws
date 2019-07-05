@@ -16,6 +16,7 @@ pipeline {
             }
             steps {
                 sh script: 'docker build -t rajat965ng/crickplay:v1 .', label: 'Creating Image'
+                sh script: 'docker push rajat965ng/crickplay:v1', label: 'Pushing into registry' 
             }
         }
     }
