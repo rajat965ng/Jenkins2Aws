@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        docker { image 'maven:latest' }
-    }
     stages {
         stage('Initialize'){
             steps{
@@ -13,23 +10,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker run -v $PWD/app:/app maven mvn clean test'
+                sh 'mvn clean test'
             }
         }
         stage('Build') {
             steps {
-                sh 'docker run -v $PWD/app:/app maven mvn install -DskipTests'
-            }
-        }
-        stage('Package') {
-            steps{
-                script{
-                app = docker.build("rajat965ng/crickplay")
-                docker.withRegistry('https://registry.hub.docker.com', 'rajat965ng') {
-                      app.push("${env.BUILD_NUMBER}")
-                      app.push("latest")
-                  }
-                }
+                sh 'mvn install -DskipTests'
             }
         }
     }
