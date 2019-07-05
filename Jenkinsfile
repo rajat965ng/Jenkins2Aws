@@ -17,5 +17,13 @@ pipeline {
                 sh 'mvn install -DskipTests'
             }
         }
+        stage('Publish') {
+            agent{
+                docker {image 'docker:latest'}
+            }
+            steps {
+                sh 'docker build -t rajat965ng/crickplay:v1'
+            }
+        }
     }
 }
