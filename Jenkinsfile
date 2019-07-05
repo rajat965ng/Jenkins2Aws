@@ -1,20 +1,13 @@
 pipeline {
     agent none
     stages {
-        stage('Test') {
+        stage('Test & Build') {
             agent {
                 docker { image 'maven:latest' }
             }
             steps {
-                sh 'mvn clean test' 
-            }
-        }
-        stage('Build') {
-            agent {
-                docker { image 'maven:latest' }
-            }
-            steps {
-                sh 'mvn install -DskipTests'
+                sh sript: 'mvn clean test', label: 'Test' 
+                sh script: 'mvn install -DskipTests', label: 'Build'
             }
         }
         stage('Publish') {
@@ -22,7 +15,7 @@ pipeline {
                 docker {image 'docker:latest'}
             }
             steps {
-                sh 'docker build -t rajat965ng/crickplay:v1'
+                sh script: 'docker build -t rajat965ng/crickplay:v1 .', label: 'Creating Image'
             }
         }
     }
