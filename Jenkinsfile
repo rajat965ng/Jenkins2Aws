@@ -11,11 +11,14 @@ pipeline {
             }
         }
         stage('Publish') {
-            agent{
-                docker {image 'docker:latest'}
-            }
+            agent none
             steps {
                 sh script: 'docker build -t rajat965ng/crickplay:v1 .', label: 'Creating Image'
+            }
+        }
+        stage('Push'){
+            agent none
+            steps {
                 sh script: 'docker push rajat965ng/crickplay:v1', label: 'Pushing into registry' 
             }
         }
