@@ -6,7 +6,7 @@ pipeline {
                 docker { image 'maven:latest' }
             }
             steps {
-                sh sript: 'mvn clean test', label: 'Test' 
+                sh script: 'mvn clean test', label: 'Test' 
                 sh script: 'mvn install -DskipTests', label: 'Build'
             }
         }
