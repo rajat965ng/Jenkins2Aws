@@ -13,13 +13,14 @@ pipeline {
         stage('Publish') {
             agent any
             steps {
-                sh script: 'docker build -t rajat965ng/crickplay:v1 .', label: 'Creating Image'
+                sh script: 'docker build -t eu.gcr.io/sape-rbs-gcp-poc/crickplay:latest .', label: 'Creating Image'
             }
         }
         stage('Push'){
             agent any
             steps {
-                sh script: 'docker push rajat965ng/crickplay:v1', label: 'Pushing into registry' 
+                sh script: 'docker push eu.gcr.io/sape-rbs-gcp-poc/crickplay:latest', label: 'Pushing into registry'
+                sh script: 'docker rmi eu.gcr.io/sape-rbs-gcp-poc/crickplay:latest', label: 'Image clean up'
             }
         }
     }
